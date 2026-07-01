@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>9-Kant Marion Javier</title>
+    <style>
+        /* Base Reset & Background */
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            background-color: #0b0f19;
+            background-image: 
+                radial-gradient(at 0% 0%, hsla(253,16%,7%,1) 0, transparent 50%), 
+                radial-gradient(at 50% 0%, hsla(225,39%,30%,0.3) 0, transparent 50%), 
+                radial-gradient(at 100% 0%, hsla(339,49%,30%,0.2) 0, transparent 50%);
+            color: #f3f4f6;
+            margin: 0;
+            padding: 60px 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
+            box-sizing: border-box;
+            overflow-x: hidden;
+        }
+
+        /* Reactive Glassmorphism Card */
+        .player-card {
+            position: relative;
+            background: rgba(255, 255, 255, 0.02);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 24px;
+            padding: 50px 40px;
+            max-width: 540px;
+            width: 100%;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+            margin-bottom: 40px;
+            overflow: hidden; /* Contains the hover glow */
+            /* Load animation */
+            animation: slideUp 0.8s ease-out forwards;
+            opacity: 0;
+            transform: translateY(20px);
+        }
+
+        /* Dynamic Mouse Tracking Glow */
+        .player-card::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: radial-gradient(600px circle at var(--mouse-x, -500px) var(--mouse-y, -500px), rgba(255, 255, 255, 0.06), transparent 40%);
+            pointer-events: none;
+            z-index: 0;
+            transition: opacity 0.3s;
+        }
+
+        /* Ensure content stays above the background glow */
+        .content-wrapper {
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Typography */
+        h1 {
+            text-align: center;
+            font-size: 2.8rem;
+            font-weight: 800;
+            letter-spacing: -1px;
+            margin: 0 0 8px 0;
+            background: linear-gradient(135deg, #ffffff 30%, #a5b4fc 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        h2 {
+            text-align: center;
+            color: #9ca3af;
+            font-weight: 400;
+            font-size: 1.1rem;
+            margin-top: 0;
+            margin-bottom: 50px;
+        }
+
+        /* Reactive Lyric Sections */
+        .song-section {
+            margin-bottom: 45px;
+            line-height: 1.8;
+            font-size: 1.05rem;
+            color: #e5e7eb;
+            transition: all 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+            cursor: default;
+            padding: 15px;
+            border-radius: 12px;
+        }
+
+        .verse-1 { text-align: center; }
+        .pre-chorus { text-align: left; }
+        .chorus { text-align: right; }
+
+        /* Labels */
+        .label {
+            display: block;
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 12px;
+            font-weight: 700;
+        }
+        .label-v { color: #61dafb; }   
+        .label-p { color: #fb7185; }   
+        .label-c { color: #38bdf8; }   
+
+        i { font-style: italic; color: #d1d5db; }
+        u { text-decoration: none; border-bottom: 2px solid #38bdf8; padding-bottom: 2px; }
+
+        /* Footer */
+        .divider {
+            height: 1px;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.1), transparent);
+            margin: 40px 0 20px 0;
+            width: 100%;
+        }
+        footer {
+            text-align: center;
+            font-size: 0.85rem;
+            color: #6b7280;
+            letter-spacing: 0.5px;
+            line-height: 1.6;
+        }
+        .meta-value {
+            color: #9ca3af;
+            font-weight: 500;
+        }
+
+        /* Load Animation Keyframes */
+        @keyframes slideUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="player-card" id="card">
+        <div class="content-wrapper">
+            <h1>Dominga</h1>
+            <h2>By: La Mave and Nateman</h2>
+            
+            <div id="lyrics-container">
+                <div class="song-section verse-1">
+                    <span class="label label-v">Verse 1</span>
+                    Wala pa ‘kong tsikot sakay ka nalang sa Dominga, <br> 
+                    Kahit na gano’n sana naman ay dumating ka.<br> 
+                    Hindi ‘to tulad ng nakasanayan mo, <br> 
+                    Sana tanggaping pa rin kahit ito lang kaya ko.
+                </div>
+                
+                <div class="song-section pre-chorus">
+                    <span class="label label-p">Pre-Chorus</span>
+                    <i><b>Handa kitang ipaglaban</b></i><br> 
+                    Kahit may kamahalan mga nakasanayan mo.<br> 
+                    Ang iyong kamay mahawakan at ika’y masilayan, <br>
+                    Gusto ko lang na malaman mong
+                </div>
+                
+                <div class="song-section chorus">
+                    <span class="label label-c">Chorus</span>
+                    <b><u>Hindi kayang tumbasan ng kahit anong salapi</u></b>,<br>
+                    Kung ano ang namamagitan dito sa’ting dalawa. <br>
+                    Sumandal lang pag malamig na ang gabi nang gumaan pakiramdam, <br>
+                    <i>Tandaan laging ‘di matutumbasan.</i>
+                </div>
+            </div>
+
+            <div class="divider"></div>
+
+            <footer>
+                Created by: <span class="meta-value">Marion Rycen S. Javier</span> &nbsp;|&nbsp; 
+                Section: <span class="meta-value">9-Kant</span>
+            </footer>
+        </div>
+    </div>
+
+    <script>
+        // Feature 1: Mouse Tracking Glow
+        const card = document.getElementById('card');
+        
+        card.addEventListener('mousemove', (e) => {
+            const rect = card.getBoundingClientRect();
+            // Calculate mouse position relative to the card
+            const x = e.clientX - rect.left;
+            const y = e.clientY - rect.top;
+            
+            // Update CSS variables for the background gradient
+            card.style.setProperty('--mouse-x', `${x}px`);
+            card.style.setProperty('--mouse-y', `${y}px`);
+        });
+
+        // Feature 2: Focus Mode for Lyrics
+        const sections = document.querySelectorAll('.song-section');
+        
+        sections.forEach(section => {
+            section.addEventListener('mouseenter', () => {
+                // Dim all sections
+                sections.forEach(s => {
+                    s.style.opacity = '0.3';
+                    s.style.transform = 'scale(0.98)';
+                });
+                // Highlight the hovered section
+                section.style.opacity = '1';
+                section.style.transform = 'scale(1.02)';
+                section.style.background = 'rgba(255, 255, 255, 0.03)';
+            });
+            
+            section.addEventListener('mouseleave', () => {
+                // Reset all sections when mouse leaves
+                sections.forEach(s => {
+                    s.style.opacity = '1';
+                    s.style.transform = 'scale(1)';
+                    s.style.background = 'transparent';
+                });
+            });
+        });
+    </script>
+
+</body>
+</html>
